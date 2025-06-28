@@ -1,15 +1,12 @@
-#User function Template for python3
+# User function Template for python3
 
-def fizzBuzz(number):
-    # Write your code here.
-    a = "FizzBuzz"
-    b = "Fizz"
-    c =  "Buzz"
-    if number%3==0 and number%5==0:
-        print(a)
-    elif number%3==0:
-        print(b)
-    elif number%5==0:
-        print(c)
-    else:
-        print(number)
+a = int(input())
+
+if a % 3 == 0 and a % 5 == 0:
+    print("FizzBuzz")
+elif a % 3 == 0:
+    print("Fizz")
+elif a % 5 == 0:
+    print("Buzz")
+else:
+    print(a)
