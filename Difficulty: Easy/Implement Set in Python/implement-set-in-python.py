@@ -26,4 +26,3 @@ def sum_set(s):
     # Your code here
      return sum(s)
     
-    
