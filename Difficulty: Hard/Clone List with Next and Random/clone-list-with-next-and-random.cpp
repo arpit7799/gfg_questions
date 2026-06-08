@@ -1,0 +1,65 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* next;
+    Node* random;
+
+    Node(int x) {
+        data = x;
+        next = NULL;
+        random = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* cloneLinkedList(Node* head) {
+        
+        if(head == NULL)
+            return NULL;
+        
+        // Step 1: Insert copy nodes
+        Node* temp = head;
+        
+        while(temp){
+            Node* copy = new Node(temp->data);
+            
+            copy->next = temp->next;
+            temp->next = copy;
+            
+            temp = copy->next;
+        }
+        
+        // Step 2: Set random pointers
+        temp = head;
+        
+        while(temp){
+            if(temp->random){
+                temp->next->random = temp->random->next;
+            }
+            temp = temp->next->next;
+        }
+        
+        // Step 3: Separate original and copied lists
+        Node* dummy = new Node(0);
+        Node* copyTail = dummy;
+        
+        temp = head;
+        
+        while(temp){
+            
+            Node* copy = temp->next;
+            
+            temp->next = copy->next;
+            
+            copyTail->next = copy;
+            copyTail = copy;
+            
+            temp = temp->next;
+        }
+        
+        return dummy->next;
+    }
+};
