@@ -1,23 +1,35 @@
 class Solution {
   public:
     bool isBalanced(string& s) {
+        
         stack<char> st;
-        for(char c : s) {
-            if(c == '(' || c == '{' || c == '[') {
-                st.push(c);
-            } 
-
+        
+        for(char ch : s) {
+            
+            // Opening bracket
+            if(ch == '(' || ch == '{' || ch == '[') {
+                st.push(ch);
+            }
+            
+            // Closing bracket
             else {
-                if(st.empty()) return false;
-                char top = st.top();
-                st.pop();
-                if((c == ')' && top != '(') ||
-                   (c == '}' && top != '{') ||
-                   (c == ']' && top != '[')) {
+                
+                if(st.empty())
                     return false;
-                }
+                
+                if(ch == ')' && st.top() != '(')
+                    return false;
+                
+                if(ch == '}' && st.top() != '{')
+                    return false;
+                
+                if(ch == ']' && st.top() != '[')
+                    return false;
+                
+                st.pop();
             }
         }
+        
         return st.empty();
     }
 };
